@@ -20,13 +20,13 @@ export default function CartContextProvider( {children , userCart } : {children 
 //     getDataFromAPI()
 //   } , [] )
 
-    const [numberOfCartItems, setnumberOfCartItems] = useState(userCart.numOfCartItems)
+    const [numberOfCartItems, setnumberOfCartItems] = useState(userCart?.numOfCartItems)
 
     // const [cartData, setCartData] = useState(userCart.data)
-const [totalPriceOfCart, settotalPriceOfCart ] = useState(userCart.data?.totalCartPrice)
+const [totalPriceOfCart, settotalPriceOfCart ] = useState(userCart?.data?.totalCartPrice)
 // const [totalPriceOfCart, settotalPriceOfCart]  = useState(userCart.data.totalCartPrice)
 
-const [cartProducts, setcartProducts] = useState< CartItemType [] >(userCart.data.products )
+const [cartProducts, setcartProducts] = useState< CartItemType [] >(userCart?.data?.products )
 
 
   return (
