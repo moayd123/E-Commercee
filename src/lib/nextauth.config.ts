@@ -1,7 +1,7 @@
 import {NextAuthOptions } from "next-auth"
 import Credentials from "next-auth/providers/credentials"
-import { email } from "zod"
-import async from './../app/_components/ShopByCategory';
+
+
 
 export const nextAuthConfig: NextAuthOptions = {
 
@@ -49,31 +49,23 @@ return {
 
     } )
   ],
+callbacks: {
+  async jwt({ token, user }) {
+    // لو فيه مستخدم لسه مسجل دخول، ضيف التوكن بتاعه للـ JWT token
+    if (user) {
+      token.realTokenBackEnd = user.realTokenBackEnd;
+    }
+    return token;
+  },
 
-callbacks : {
-
-jwt(params) {
-  
-
-
-if( params.user ) {
-
-  params.token.realTokenBackEnd = params.user.realTokenBackEnd 
-
-}
-
-console.log("params from jwt " , params);
-
-return params.token
-
-},
-
-session(params) {
-  console.log("params from session" , params);
-// params.session.user.realTokenBackEnd  = params.token.realTokenBackEnd 
-  return params.session
-},
-
+  async session({ session, token }) {
+    // انقل التوكن من الـ JWT للـ Session عشان تقدر تستخدمه في الكليانت
+    if (session.user) {
+      // @ts-ignore (لو مطلع خطأ TypeScript)
+      session.user.realTokenBackEnd = token.realTokenBackEnd;
+    }
+    return session;
+  },
 },
 
 session : {
