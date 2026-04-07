@@ -1,6 +1,5 @@
 
 "use client"
-// import React, { useContext } from 'react'
 import { FaPlus } from 'react-icons/fa'
 import { addProdutToCart } from '../_actions/cart.actions'
 import { toast } from 'sonner'
