@@ -21,7 +21,7 @@ async function hadeladdToCart() {
     toast.success(res.message  , { position : "top-center"})
     setnumberOfCartItems( res.numOfCartItems )
     setcartProducts( res.data.products )
-    settotalPriceOfCart( res.data.totalCartPrice)
+    settotalPriceOfCart( res.data?.totalCartPrice)
 
    }
 }

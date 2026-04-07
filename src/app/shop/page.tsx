@@ -15,7 +15,7 @@ export default function CartPage() {
     const res = await deleteItemFromCart(id);
     setcartProducts(res.data.products);
     setnumberOfCartItems(res.numOfCartItems);
-    settotalPriceOfCart(res.data.totalCartPrice);
+    settotalPriceOfCart(res.data?.totalCartPrice);
     toast.success("Item removed from cart", { position: "top-center" });
   }
 
@@ -27,7 +27,7 @@ export default function CartPage() {
     if (res.status == "success") {
       setcartProducts(res.data.products);
       setnumberOfCartItems(res.numOfCartItems);
-      settotalPriceOfCart(res.data.totalCartPrice);
+      settotalPriceOfCart(res.data?.totalCartPrice);
       toast.success("Quantity updated", { position: "top-center" });
     } else {
       toast.error("Error updating quantity");
